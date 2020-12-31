@@ -11,6 +11,9 @@ or
 yarn add SlashCommandLoader
 ```
 
+## Known issues
+- When using shards, if your command requires the bot in any way it tries to start it, i will be planning to fix this in the furute.
+
 
 ## Testing
 1. run npm i or yarn install
