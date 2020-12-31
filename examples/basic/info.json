@@ -1,0 +1,5 @@
+{
+	"name": "Basic",
+	"description": "0.1.0 Testing of the basic features",
+	"file": "basic/index.ts"
+}

@@ -1,0 +1,5 @@
+{
+	"name": "sharding",
+	"description": "0.1.0 Testing with the sharding manager.",
+	"file": "sharding/index.ts"
+}
