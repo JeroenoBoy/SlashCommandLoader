@@ -9,7 +9,7 @@ import { SlashCommandLoader } from "../../src";
 	//	Creating the client
 
 	const client = new Client();
-	client.on('ready', () => console.log(`[${chalk.blue(client.shard.ids[0])}] Logged in as ${chalk.green(client.user.tag)}`))
+	client.on('ready', () => console.log(`[${chalk.blue(client.shard!.ids[0])}] Logged in as ${chalk.green(client.user!.tag)}`))
 
 	//	Creating the handler
 

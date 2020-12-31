@@ -9,7 +9,7 @@ import { SlashCommandLoader } from "../../src";
 (async () => {
 
 
-	const manager = new ShardingManager('examples/shardingExample/bot.ts', {
+	const manager = new ShardingManager('examples/sharding/bot.ts', {
 		token: process.env.TEST_BOT_TOKEN!,
 		execArgv: process.execArgv
 	});

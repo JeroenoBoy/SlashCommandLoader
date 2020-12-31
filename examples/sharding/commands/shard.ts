@@ -9,7 +9,7 @@ const command = new Command({
 
 
 command.run(interaction => {
-	interaction.send(`This guild is using shard #${interaction.client.shard.ids[0]}`);
+	interaction.send(`This guild is using shard #${interaction.client.shard!.ids[0]}`);
 })
 
 //	Export
