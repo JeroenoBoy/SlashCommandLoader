@@ -1,5 +1,5 @@
 import path from 'path';
-import fs from 'fs/promises';
+import fs from 'fs';
 import { SlashCommandHandler } from 'slashdiscord.js';
 import { Command } from './Command';
 
@@ -106,18 +106,18 @@ export class SlashCommandLoader {
 	/**
 	 * Start loading all commands.
 	 */
-	async load() {
+	load() {
 
 		//	Loading files first
 
 		for(const file of this.files) {
-			await this.loadCommand(file)
+			this.loadCommand(file)
 		}
 
 		//	Loading directories
 
 		for(const data of this.folders) {
-			await this.loadDir(data);
+			this.loadDir(data);
 		}
 	}
 
@@ -126,15 +126,15 @@ export class SlashCommandLoader {
 	 * Load a folder to the SlashCommandHandler.
 	 * @param data Data of this folder.
 	 */
-	async loadDir(data: FolderData) {
+	loadDir(data: FolderData) {
 		
-		const folders = await fs.readdir(data.dir);
+		const folders = fs.readdirSync(data.dir);
 		
 		for(const folder of folders) {
 			if(folder.startsWith('!')) continue;
 
 			const dir = path.join(data.dir, folder)
-			const stat = await fs.lstat(dir);
+			const stat = fs.lstatSync(dir);
 
 			//	Loading sub directories
 
@@ -150,7 +150,7 @@ export class SlashCommandLoader {
 
 			//	Loading command
 
-			await this.loadCommand(dir)
+			this.loadCommand(dir)
 		}
 
 	}
@@ -161,7 +161,7 @@ export class SlashCommandLoader {
 	 * Load a command to the SlashCommandHandler.
 	 * @param file Path of the file. 
 	 */
-	async loadCommand(dir: string) {
+	loadCommand(dir: string) {
 
 		//	Loading command
 

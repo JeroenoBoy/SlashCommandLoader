@@ -22,7 +22,7 @@ import { SlashCommandLoader } from "../../src";
 
 	//	Loading commands
 
-	await new SlashCommandLoader(handler)
+	new SlashCommandLoader(handler)
 		.addFolder(join(__dirname, 'commands'))
 		.load();
 

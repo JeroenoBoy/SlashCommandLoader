@@ -18,7 +18,7 @@ import { SlashCommandLoader } from "../../src";
 	
 	//	Loading the commands using the loader.
 	
-	await new SlashCommandLoader(handler)
+	new SlashCommandLoader(handler)
 		.addFolder(join(__dirname, 'commands'))
 		.load()
 	
