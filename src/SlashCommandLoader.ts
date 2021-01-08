@@ -32,7 +32,6 @@ export interface FolderData {
 
 
 
-
 export class SlashCommandLoader {
 
 	/**
@@ -179,8 +178,7 @@ export class SlashCommandLoader {
 
 		if(!this.handler.runCommands) return;
 
-		command.subFunctions = cmd.subcommands;
-		command.runFunction = cmd.runFunction;
+		command.functionMap = cmd.functionMap;
 
 		return;
 	}

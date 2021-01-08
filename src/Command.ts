@@ -15,8 +15,7 @@ export class Command implements ApplicationCommand {
 	
 	//	Behind the scenes
 
-	runFunction: InteractionFunction = () => {};	
-	subcommands: Map<string, InteractionFunction> = new Map<string, InteractionFunction>();
+	functionMap: Map<string, InteractionFunction> = new Map<string, InteractionFunction>();
 	
 
 	/**
@@ -34,17 +33,35 @@ export class Command implements ApplicationCommand {
 	 * Set the main InteractionFunction.
 	 * @param callback the function called upon execution
 	 */
-	run(callback: InteractionFunction) {
-		this.runFunction = callback;
+	run(callback: InteractionFunction): Command
+	/**
+	 * Execute the command for a specific option.
+	 * @param option the option to listen to. 
+	 * @param callback the function being ran when executed.
+	 */
+	run(option: string, callback: InteractionFunction): Command
+
+
+	run(callbackOrOption: string | InteractionFunction, callback?: InteractionFunction): Command {
+		if(typeof callbackOrOption === 'string') {
+			if(typeof callback !== 'function') throw new Error('callback must be of type function.');
+			this.functionMap.set(callbackOrOption, callback);
+		}
+		else
+			this.functionMap.set('', callbackOrOption);
+
+		return this;
 	}
 
 
 	/**
+	 * @deprecated
 	 * Run a sub command, for example: 'example ping user'.
 	 * @param subcommand the subcommand which should be executed
 	 * @param callback function that executes this command
 	 */
 	sub(subcommand: string, callback: InteractionFunction) {
-		this.subcommands.set(subcommand, callback)
+		console.log('SlashCommandLoader DeprecationWarning: Command.sub(option, callback) is deprecated, please use command.run(option, callback)')
+		this.functionMap.set(subcommand, callback)
 	}
 }
